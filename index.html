@@ -1,0 +1,432 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishna Yadav | Ad Strategist & Vibe Coder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #fbbf24;
+            --amber: #f59e0b;
+            --slate-bg: #020617;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--slate-bg);
+            color: #f8fafc;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Essential Visibility Fix */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Always behind content */
+            pointer-events: none;
+        }
+
+        .main-content {
+            position: relative;
+            z-index: 10; /* Always above 3D */
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #ea580c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(251, 191, 36, 0.5);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animated Buttons */
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn-premium::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+        }
+        .btn-premium:hover::after { transform: scale(1); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #fbbf24; }
+
+        .neon-glow {
+            text-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+        }
+    </style>
+</head>
+<body class="selection:bg-amber-500 selection:text-black">
+
+    <!-- 3D Environment -->
+    <div id="canvas-container"></div>
+
+    <div class="main-content">
+        <!-- Navigation -->
+        <nav class="fixed top-0 w-full z-[100] px-8 py-6 flex justify-between items-center backdrop-blur-md border-b border-white/5">
+            <div class="text-2xl font-extrabold tracking-tighter text-amber-500">KY.</div>
+            <div class="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">
+                <a href="#about" class="hover:text-amber-400 transition-all">Identity</a>
+                <a href="#skills" class="hover:text-amber-400 transition-all">Weaponry</a>
+                <a href="#tools" class="hover:text-amber-400 transition-all">Ecosystem</a>
+                <a href="#contact" class="text-white px-4 py-2 bg-white/10 rounded-full hover:bg-amber-500 hover:text-black transition-all">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center px-6 pt-20">
+            <div class="max-w-6xl text-center">
+                <div class="scroll-reveal inline-block px-6 py-2 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-500 text-xs font-black uppercase tracking-[0.3em] mb-10">
+                    The Vibe Coder • Ad Strategist
+                </div>
+                <h1 class="scroll-reveal text-6xl md:text-[140px] font-black leading-[0.85] tracking-tighter mb-10">
+                    KRISHNA <br/> <span class="text-gradient neon-glow">YADAV</span>
+                </h1>
+                <p class="scroll-reveal text-2xl md:text-5xl font-light text-slate-300 mb-12 max-w-4xl mx-auto leading-tight">
+                    I create ads that <span class="text-white font-bold underline decoration-amber-500 underline-offset-8">turn viewers into clients.</span>
+                </p>
+                <div class="scroll-reveal flex flex-wrap justify-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-500 mb-16">
+                    <span class="text-amber-500">Ad Creator</span> • <span>UGC Specialist</span> • <span class="text-amber-500">AI Filmmaker</span> • <span>Marketing Strategist</span>
+                </div>
+                <div class="scroll-reveal">
+                    <a href="#contact" class="btn-premium px-16 py-7 bg-amber-500 text-black font-black uppercase tracking-[0.2em] rounded-2xl shadow-[0_0_50px_rgba(251,191,36,0.3)] hover:scale-105 transition-transform inline-block">
+                        Start a Project
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-40 px-6">
+            <div class="max-w-4xl mx-auto scroll-reveal">
+                <h2 class="text-amber-500 font-bold uppercase tracking-[0.5em] text-[10px] mb-16 text-center">The Brand Philosophy</h2>
+                <div class="space-y-16">
+                    <p class="text-4xl md:text-7xl font-black leading-tight text-white">
+                        Attention is the <span class="text-gradient italic">first sale.</span>
+                    </p>
+                    <p class="text-xl md:text-3xl text-slate-400 leading-relaxed font-light">
+                        I focus on <span class="text-white font-semibold">attention, storytelling, persuasion, and conversion.</span> I build ads that work, not just ads that look good. Clarity converts. Creative without strategy is just noise.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-10">
+                        <div class="p-8 glass-card rounded-3xl">
+                            <h4 class="text-amber-500 font-bold mb-2">The Mission</h4>
+                            <p class="text-sm text-slate-400">To bridge the gap between high-end AI visuals and hard-hitting marketing psychology.</p>
+                        </div>
+                        <div class="p-8 glass-card rounded-3xl">
+                            <h4 class="text-amber-500 font-bold mb-2">The Results</h4>
+                            <p class="text-sm text-slate-400">Crafting campaigns that stop the scroll and turn casual viewers into loyal high-ticket clients.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-40 px-6 bg-slate-950/40">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-amber-500 font-bold uppercase tracking-[0.5em] text-[10px] mb-20">The Weaponry</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Skills Cards (12 items) -->
+                    <div class="p-10 glass-card rounded-[2.5rem] scroll-reveal">
+                        <h3 class="text-xl font-bold mb-3 text-white">Ad Creation</h3>
+                        <p class="text-xs text-slate-400">High-conversion visual concepts for paid social media campaigns.</p>
+                    </div>
+                    <div class="p-10 glass-card rounded-[2.5rem] scroll-reveal">
+                        <h3 class="text-xl font-bold mb-3 text-white">UGC Ads</h3>
+                        <p class="text-xs text-slate-400">Authentic, relatable content that feels native to the platform.</p>
+                    </div>
+                    <div class="p-10 glass-card rounded-[2.5rem] scroll-reveal">
+                        <h3 class="text-xl font-bold mb-3 text-white">Marketing</h3>
+                        <p class="text-xs text-slate-400">Holistic strategy focused on brand positioning and market share.</p>
+                    </div>
+                    <div class="p-10 glass-card rounded-[2.5rem] scroll-reveal">
+                        <h3 class="text-xl font-bold mb-3 text-white">AI Filmmaking</h3>
+                        <p class="text-xs text-slate-400">Using generative AI to produce cinematic quality at scale.</p>
+                    </div>
+                    <div class="p-10 glass-card rounded-[2.5rem] scroll-reveal">
+                        <h3 class="text-xl font-bold mb-3 text-white">Ad Copywriting</h3>
+                        <p class="text-xs text-slate-400">Persuasive sales copy engineered to trigger the 'Buy' response.</p>
+                    </div>
+                    <div class="p-10 glass-card rounded-[2.5rem] scroll-reveal">
+                        <h3 class="text-xl font-bold mb-3 text-white">Script Writing</h3>
+                        <p class="text-xs text-slate-400">Narrative architecture designed for short-form video retention.</p>
+                    </div>
+                    <div class="p-10 glass-card rounded-[2.5rem] scroll-reveal">
+                        <h3 class="text-xl font-bold mb-3 text-white">Creative Direction</h3>
+                        <p class="text-xs text-slate-400">Managing the visual and conceptual soul of a brand campaign.</p>
+                    </div>
+                    <div class="p-10 glass-card rounded-[2.5rem] scroll-reveal">
+                        <h3 class="text-xl font-bold mb-3 text-white">Hook Writing</h3>
+                        <p class="text-xs text-slate-400">The first 3 seconds that determine your campaign's success.</p>
+                    </div>
+                    <div class="p-10 glass-card rounded-[2.5rem] scroll-reveal">
+                        <h3 class="text-xl font-bold mb-3 text-white">Conversion</h3>
+                        <p class="text-xs text-slate-400">Optimizing every touchpoint to maximize ROI and sales.</p>
+                    </div>
+                    <div class="p-10 glass-card rounded-[2.5rem] scroll-reveal">
+                        <h3 class="text-xl font-bold mb-3 text-white">Web Building</h3>
+                        <p class="text-xs text-slate-400">High-speed landing pages that close the deal instantly.</p>
+                    </div>
+                    <div class="p-10 glass-card rounded-[2.5rem] scroll-reveal">
+                        <h3 class="text-xl font-bold mb-3 text-white">Vibe Coding</h3>
+                        <p class="text-xs text-slate-400">Creating the digital aesthetic that resonates with your tribe.</p>
+                    </div>
+                    <div class="p-10 glass-card rounded-[2.5rem] scroll-reveal">
+                        <h3 class="text-xl font-bold mb-3 text-white">AI Tools</h3>
+                        <p class="text-xs text-slate-400">Mastery of the modern automation and creation stack.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools" class="py-40 px-6">
+            <div class="max-w-6xl mx-auto text-center scroll-reveal">
+                <h2 class="text-amber-500 font-bold uppercase tracking-[0.5em] text-[10px] mb-20">The Ecosystem</h2>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <div class="px-10 py-5 glass-card rounded-2xl text-xl font-bold text-amber-400">Seedence</div>
+                    <div class="px-10 py-5 glass-card rounded-2xl text-xl font-bold text-slate-100">ChatGPT</div>
+                    <div class="px-10 py-5 glass-card rounded-2xl text-xl font-bold text-amber-400">Sora 2</div>
+                    <div class="px-10 py-5 glass-card rounded-2xl text-xl font-bold text-slate-100">Gemini</div>
+                    <div class="px-10 py-5 glass-card rounded-2xl text-xl font-bold text-amber-400">Kling</div>
+                    <div class="px-10 py-5 glass-card rounded-2xl text-xl font-bold text-slate-100">Veo</div>
+                    <div class="px-10 py-5 glass-card rounded-2xl text-xl font-bold text-amber-400">Flow</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Signature Quotes -->
+        <section class="py-20 bg-slate-900/20">
+            <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 text-center md:text-left">
+                <div class="scroll-reveal text-3xl font-black italic text-slate-600">“Attention is the first sale.”</div>
+                <div class="scroll-reveal text-3xl font-black italic text-amber-500">“Good ads stop the scroll. Great ads get clients.”</div>
+                <div class="scroll-reveal text-3xl font-black italic text-slate-600">“Storytelling sells.”</div>
+                <div class="scroll-reveal text-3xl font-black italic text-amber-500">“I build ads that work, not just ads that look good.”</div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-40 px-6">
+            <div class="max-w-5xl mx-auto scroll-reveal">
+                <div class="text-center mb-20">
+                    <h2 class="text-6xl md:text-[100px] font-black mb-10 leading-tight">Build the <span class="text-gradient">Future.</span></h2>
+                    <p class="text-slate-400 text-2xl max-w-2xl mx-auto font-light">Stop losing attention. Start converting it. Connect with me directly below.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/919528275562?text=Hey%20Krishna!%20I'm%20reaching%20out%20from%20your%20portfolio.%20I%20want%20to%20discuss%20a%20high-impact%20ad%20campaign%20for%20my%20brand." target="_blank" class="group p-12 glass-card rounded-[3rem] text-center hover:scale-[1.05]">
+                        <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-green-500/20 group-hover:rotate-12 transition-all">
+                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </div>
+                        <h3 class="text-4xl font-black text-white mb-2">WhatsApp</h3>
+                        <p class="text-slate-400">+91 9528275562</p>
+                    </a>
+                    
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/marketing_with_krishna0" target="_blank" class="group p-12 glass-card rounded-[3rem] text-center hover:scale-[1.05]">
+                        <div class="w-20 h-20 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-pink-600/20 group-hover:rotate-12 transition-all">
+                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.063 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.272 2.69.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.2 4.353 2.613 6.766 6.947 6.766 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c4.351-.2 6.764-2.612 6.764-6.766.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.2-4.353-2.612-6.764-6.766-6.766C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </div>
+                        <h3 class="text-4xl font-black text-white mb-2">Instagram</h3>
+                        <p class="text-slate-400">marketing_with_krishna0</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-12 border-t border-white/5 text-center text-[10px] font-bold uppercase tracking-[0.5em] text-slate-600">
+            Krishna Yadav © 2026 • Attention Architect • All Rights Reserved
+        </footer>
+    </div>
+
+    <!-- KrishBot -->
+    <div class="fixed bottom-8 right-8 z-[200] flex flex-col items-end">
+        <div id="krishbot-ui" class="hidden w-80 h-[450px] glass-card rounded-[2.5rem] mb-4 flex-col overflow-hidden shadow-2xl border-amber-500/20">
+            <div class="p-6 bg-amber-500 text-black font-black text-xs flex justify-between items-center tracking-widest">
+                <span>KRISHBOT AI</span>
+                <button onclick="toggleBot()" class="bg-black/10 p-2 rounded-full">✕</button>
+            </div>
+            <div id="chat-content" class="flex-1 p-6 overflow-y-auto space-y-4 text-[10px] font-bold leading-relaxed text-slate-300">
+                <div class="bg-slate-900/80 p-4 rounded-2xl rounded-tl-none border border-slate-800">
+                    Yo! I'm Krishna's AI Assistant. How can I help you stop the scroll today?
+                </div>
+            </div>
+            <div class="p-4 border-t border-white/5 flex gap-2">
+                <input id="bot-input" type="text" placeholder="Type here..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-[10px] text-white focus:outline-none focus:border-amber-500/50">
+                <button onclick="sendMsg()" class="bg-amber-500 text-black px-4 rounded-xl font-black active:scale-90 transition-transform">↵</button>
+            </div>
+        </div>
+        <button onclick="toggleBot()" class="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center shadow-2xl shadow-amber-500/40 hover:scale-110 active:scale-95 transition-all group">
+            <span class="text-black font-black text-2xl group-hover:rotate-12 transition-transform">K</span>
+        </button>
+    </div>
+
+    <script>
+        // --- VISIBILITY & ANIMATION ---
+        const reveal = () => {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            reveals.forEach(r => {
+                const windowHeight = window.innerHeight;
+                const revealTop = r.getBoundingClientRect().top;
+                if (revealTop < windowHeight - 100) {
+                    r.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', reveal);
+        window.onload = () => { 
+            reveal(); 
+            initThree();
+            animate();
+        };
+
+        // --- THREE.JS BACKGROUND ---
+        let scene, camera, renderer, particles, floatingShapes = [];
+        function initThree() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            // Particles
+            const geo = new THREE.BufferGeometry();
+            const pos = [];
+            for (let i = 0; i < 2000; i++) {
+                pos.push(Math.random() * 2000 - 1000, Math.random() * 2000 - 1000, Math.random() * 2000 - 1000);
+            }
+            geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+            particles = new THREE.Points(geo, new THREE.PointsMaterial({ color: 0xfbbf24, size: 2, transparent: true, opacity: 0.2 }));
+            scene.add(particles);
+
+            // Floating 3D Shapes
+            const shapeColors = [0xfbbf24, 0x334155, 0xea580c];
+            for(let i=0; i<5; i++) {
+                const geom = new THREE.IcosahedronGeometry(Math.random() * 30 + 10, 0);
+                const mat = new THREE.MeshPhongMaterial({ 
+                    color: shapeColors[i % 3], 
+                    wireframe: true, 
+                    transparent: true, 
+                    opacity: 0.1 
+                });
+                const mesh = new THREE.Mesh(geom, mat);
+                mesh.position.set(Math.random()*600-300, Math.random()*600-300, Math.random()*200-100);
+                floatingShapes.push(mesh);
+                scene.add(mesh);
+            }
+
+            const light = new THREE.PointLight(0xffffff, 1);
+            light.position.set(0, 0, 500);
+            scene.add(light);
+            camera.position.z = 500;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particles.rotation.y += 0.0003;
+            floatingShapes.forEach(s => {
+                s.rotation.x += 0.002;
+                s.rotation.y += 0.002;
+            });
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // --- KRISHBOT DIALOGUE ---
+        function toggleBot() {
+            const ui = document.getElementById('krishbot-ui');
+            ui.style.display = (ui.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        const dialogues = {
+            "hello": "Yo! What's up? I'm the digital double of Krishna. Need some ad magic?",
+            "ads": "Krishna creates scroll-stopping ads using AI and deep marketing psychology. Want to see conversion rates jump?",
+            "price": "Quality ads don't cost; they invest. Krishna's campaigns usually pay for themselves in days. Chat with him on WhatsApp!",
+            "skills": "He does it all: UGC, AI Filmmaking, Copywriting, Vibe Coding, and Web Building. Multi-disciplinary is an understatement.",
+            "seedence": "Seedence is the secret weapon for high-velocity creation. It's how we move faster than the competition.",
+            "connect": "Reach the boss directly: WhatsApp +91 9528275562 or IG @marketing_with_krishna0",
+            "default": "Interesting. My algorithms say you're looking for high-performance creative. Krishna can help with that. Type 'connect' to talk to him!"
+        };
+
+        function sendMsg() {
+            const input = document.getElementById('bot-input');
+            const content = document.getElementById('chat-content');
+            if(!input.value.trim()) return;
+
+            const uMsg = document.createElement('div');
+            uMsg.className = "bg-amber-500/10 p-4 rounded-2xl rounded-tr-none text-right border border-amber-500/20";
+            uMsg.innerText = input.value;
+            content.appendChild(uMsg);
+
+            const val = input.value.toLowerCase();
+            input.value = '';
+
+            setTimeout(() => {
+                const bMsg = document.createElement('div');
+                bMsg.className = "bg-slate-900/80 p-4 rounded-2xl rounded-tl-none border border-slate-800";
+                let reply = dialogues.default;
+                for(let key in dialogues) {
+                    if(val.includes(key)) reply = dialogues[key];
+                }
+                bMsg.innerText = reply;
+                content.appendChild(bMsg);
+                content.scrollTop = content.scrollHeight;
+            }, 600);
+        }
+
+        document.getElementById('bot-input').addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') sendMsg();
+        });
+    </script>
+</body>
+</html>
+
+```
